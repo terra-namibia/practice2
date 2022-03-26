@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice2/TestPage2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -92,6 +93,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
+          TextButton(
+              onPressed: () => {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return TestPage2();
+                    }))
+                  },
+              child: Text("進む", style: TextStyle(fontSize: 80))),
         ],
       ),
       floatingActionButton: FloatingActionButton(
