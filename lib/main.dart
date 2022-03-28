@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'package:flutter/material.dart';
 import 'package:practice2/TestPage2.dart';
 
@@ -68,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           if (_counter % 2 == 0)
             const Text('偶数です',
-                style: const TextStyle(fontSize: 20, color: Colors.red)),
+                style: TextStyle(fontSize: 20, color: Colors.red)),
           if (_counter % 2 == 1)
             const Text('奇数です',
                 style: TextStyle(fontSize: 20, color: Colors.red)),
@@ -215,7 +217,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       return TestPage2();
                     }))
                   },
-              child: const Text("進む", style: const TextStyle(fontSize: 30))),
+              child: const Text("進む", style: TextStyle(fontSize: 30))),
         ],
       ),
       floatingActionButton: FloatingActionButton(
