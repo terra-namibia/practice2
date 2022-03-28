@@ -52,32 +52,35 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(children: [
+        title: Row(children: const [
           Icon(Icons.create),
           Text("初めてのタイトル"),
         ]),
       ),
-      drawer: Drawer(child: Center(child: Text("Drawer"))),
+      drawer: const Drawer(child: Center(child: Text("Drawer"))),
       body: Column(
         children: [
-          Text("data1"),
-          Text("data2"),
+          const Text("data1"),
+          const Text("data2"),
           Text(
             '$_counter',
             style: Theme.of(context).textTheme.headline4,
           ),
           if (_counter % 2 == 0)
-            Text('偶数です', style: TextStyle(fontSize: 20, color: Colors.red)),
+            const Text('偶数です',
+                style: const TextStyle(fontSize: 20, color: Colors.red)),
           if (_counter % 2 == 1)
-            Text('奇数です', style: TextStyle(fontSize: 20, color: Colors.red)),
-          Text('$_type', style: TextStyle(fontSize: 20, color: Colors.red)),
+            const Text('奇数です',
+                style: TextStyle(fontSize: 20, color: Colors.red)),
+          Text('$_type',
+              style: const TextStyle(fontSize: 20, color: Colors.red)),
           TextButton(
             onPressed: () => {print("updateボタンがおされたよ")},
-            child: Text("update"),
+            child: const Text("update"),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
+            children: const [
               Icon(
                 Icons.audiotrack,
                 color: Colors.green,
@@ -94,20 +97,24 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               AnimatedSwitcher(
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                   child: _lightIsOn
-                      ? Icon(Icons.favorite, color: Colors.pink)
-                      : Text("なにもない")),
+                      ? const Icon(Icons.favorite, color: Colors.pink)
+                      : const Text("なにもない")),
               AnimatedContainer(
                   duration: const Duration(seconds: 1),
                   width: _lightIsOn ? 15 : 5,
                   height: _lightIsOn ? 5 : 15,
-                  padding: _lightIsOn ? EdgeInsets.all(0) : EdgeInsets.all(5),
-                  margin: _lightIsOn ? EdgeInsets.all(0) : EdgeInsets.all(5),
+                  padding: _lightIsOn
+                      ? const EdgeInsets.all(0)
+                      : const EdgeInsets.all(5),
+                  margin: _lightIsOn
+                      ? const EdgeInsets.all(0)
+                      : const EdgeInsets.all(5),
                   color: _lightIsOn ? Colors.blue : Colors.grey),
               AnimatedOpacity(
                   opacity: _lightIsOn ? 1.0 : 0.0,
-                  duration: Duration(seconds: 1),
+                  duration: const Duration(seconds: 1),
                   child: Text(
                     "浮かぶ文字",
                     style: Theme.of(context).textTheme.headline5,
@@ -139,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Container(
-                color: Color.fromARGB(255, 238, 227, 177),
+                color: const Color.fromARGB(255, 238, 227, 177),
                 padding: const EdgeInsets.all(8),
                 margin: const EdgeInsets.all(4),
                 child: Text(_lightIsOn ? '押せない OFF' : '押せない ON'),
@@ -150,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Container(
-                color: Color.fromARGB(255, 238, 227, 177),
+                color: const Color.fromARGB(255, 238, 227, 177),
                 padding: const EdgeInsets.all(8),
                 margin: const EdgeInsets.all(4),
                 child: Text(_lightIsOn ? '押せない OFF' : '押せない ON'),
@@ -190,7 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Container(
                 width: 150.0,
                 height: 150.0,
-                color: Color.fromARGB(255, 250, 121, 112),
+                color: const Color.fromARGB(255, 250, 121, 112),
                 child: AnimatedAlign(
                   alignment:
                       selected ? Alignment.topRight : Alignment.bottomLeft,
@@ -208,13 +215,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       return TestPage2();
                     }))
                   },
-              child: Text("進む", style: TextStyle(fontSize: 30))),
+              child: const Text("進む", style: const TextStyle(fontSize: 30))),
         ],
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () =>
               {print("FloatingActionButtonが押されたよ"), _incrementCounter()},
-          child: Icon(Icons.timer)),
+          child: const Icon(Icons.timer)),
     );
   }
 }
