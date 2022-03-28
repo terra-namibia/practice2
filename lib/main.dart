@@ -184,13 +184,26 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
+          AnimatedSwitcher(
+              duration: const Duration(seconds: 1),
+              child: _lightIsOn
+                  ? Center(
+                      child: Container(
+                          padding: EdgeInsets.all(10.0),
+                          child: SizedBox(
+                              width: 15,
+                              height: 15,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 3.0,
+                              ))))
+                  : const Text("")),
           Container(
             padding: const EdgeInsets.all(8),
             margin: const EdgeInsets.all(4),
             child: AnimatedAlign(
                 duration: const Duration(seconds: 1),
                 alignment:
-                    _lightIsOn ? Alignment.topLeft : Alignment.bottomRight,
+                    _lightIsOn ? Alignment.bottomRight : Alignment.topLeft,
                 child: SizedBox(
                     width: 10,
                     height: 10,
