@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice2/TestPage2.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -109,6 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.blue,
                 size: 36.0,
               ),
+              Icon(FontAwesomeIcons.globe, color: Colors.cyan)
             ],
           ),
           Row(
