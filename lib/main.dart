@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:practice2/TestPage2.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,6 +39,17 @@ class _MyHomePageState extends State<MyHomePage> {
   String _type = "偶数";
   bool selected = false;
   bool _lightIsOn = false;
+  static const String _url = 'https://flutter.dev';
+
+  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+    onPrimary: Colors.black87,
+    primary: Colors.grey[300],
+    minimumSize: const Size(88, 36),
+    padding: const EdgeInsets.symmetric(horizontal: 16),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2)),
+    ),
+  );
 
   void _incrementCounter() {
     setState(() {
@@ -48,6 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
         _type = "4で割り切れません";
       }
     });
+  }
+
+  void _launchURL() async {
+    if (!await launch(_url)) throw 'Could not launch $_url';
   }
 
   @override
@@ -209,6 +225,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+          ),
+          ElevatedButton(
+            style: raisedButtonStyle,
+            onPressed: _launchURL,
+            child: const Text('Show Flutter homepage'),
           ),
           TextButton(
               onPressed: () => {
