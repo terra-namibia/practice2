@@ -144,112 +144,121 @@ class _MyHomePageState extends State<MyHomePage> {
                 Icon(FontAwesomeIcons.globe, color: Colors.cyan)
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
+            Container(
+              color: const Color.fromARGB(255, 240, 234, 209),
+              padding: const EdgeInsets.all(8),
+              margin: const EdgeInsets.all(4),
+              child: Column(children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.lightbulb_outline,
+                    color: _lightIsOn ? Colors.yellow.shade600 : Colors.black,
+                    size: 60,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _lightIsOn = !_lightIsOn;
+                        });
+                      },
+                      child: Container(
+                        color: Colors.yellow.shade600,
+                        padding: const EdgeInsets.all(8),
+                        margin: const EdgeInsets.all(4),
+                        child: Text(_lightIsOn ? '押せる OFF' : '押せる ON'),
+                      ),
+                    ),
+                    Container(
+                      color: const Color.fromARGB(255, 238, 227, 177),
+                      padding: const EdgeInsets.all(8),
+                      margin: const EdgeInsets.all(4),
+                      child: Text(_lightIsOn ? '押せない OFF' : '押せない ON'),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Container(
+                      color: const Color.fromARGB(255, 238, 227, 177),
+                      padding: const EdgeInsets.all(8),
+                      margin: const EdgeInsets.all(4),
+                      child: Text(_lightIsOn ? '押せない OFF' : '押せない ON'),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    AnimatedSwitcher(
+                        duration: const Duration(seconds: 1),
+                        child: _lightIsOn
+                            ? const Icon(Icons.favorite, color: Colors.pink)
+                            : const Text("なにもない")),
+                    AnimatedContainer(
+                        duration: const Duration(seconds: 1),
+                        width: _lightIsOn ? 56 : 20,
+                        height: _lightIsOn ? 20 : 20,
+                        padding: _lightIsOn
+                            ? const EdgeInsets.all(2)
+                            : const EdgeInsets.all(2),
+                        margin: _lightIsOn
+                            ? const EdgeInsets.all(2)
+                            : const EdgeInsets.all(8),
+                        color: _lightIsOn ? Colors.blue : Colors.grey),
+                    AnimatedOpacity(
+                        opacity: _lightIsOn ? 1.0 : 0.0,
+                        duration: const Duration(seconds: 1),
+                        child: Text(
+                          "浮かぶ文字",
+                          style: Theme.of(context).textTheme.headline5,
+                        )),
+                  ],
+                ),
                 AnimatedSwitcher(
                     duration: const Duration(seconds: 1),
                     child: _lightIsOn
-                        ? const Icon(Icons.favorite, color: Colors.pink)
-                        : const Text("なにもない")),
-                AnimatedContainer(
-                    duration: const Duration(seconds: 1),
-                    width: _lightIsOn ? 15 : 5,
-                    height: _lightIsOn ? 5 : 15,
-                    padding: _lightIsOn
-                        ? const EdgeInsets.all(0)
-                        : const EdgeInsets.all(5),
-                    margin: _lightIsOn
-                        ? const EdgeInsets.all(0)
-                        : const EdgeInsets.all(5),
-                    color: _lightIsOn ? Colors.blue : Colors.grey),
-                AnimatedOpacity(
-                    opacity: _lightIsOn ? 1.0 : 0.0,
-                    duration: const Duration(seconds: 1),
-                    child: Text(
-                      "浮かぶ文字",
-                      style: Theme.of(context).textTheme.headline5,
-                    )),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.lightbulb_outline,
-                color: _lightIsOn ? Colors.yellow.shade600 : Colors.black,
-                size: 60,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _lightIsOn = !_lightIsOn;
-                    });
-                  },
-                  child: Container(
-                    color: Colors.yellow.shade600,
-                    padding: const EdgeInsets.all(8),
-                    margin: const EdgeInsets.all(4),
-                    child: Text(_lightIsOn ? '押せる OFF' : '押せる ON'),
-                  ),
-                ),
+                        ? Center(
+                            child: Container(
+                                padding: const EdgeInsets.all(10.0),
+                                child: const SizedBox(
+                                    width: 15,
+                                    height: 15,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 3.0,
+                                    ))))
+                        : const Text("")),
                 Container(
-                  color: const Color.fromARGB(255, 238, 227, 177),
                   padding: const EdgeInsets.all(8),
                   margin: const EdgeInsets.all(4),
-                  child: Text(_lightIsOn ? '押せない OFF' : '押せない ON'),
+                  child: AnimatedAlign(
+                      duration: const Duration(seconds: 1),
+                      alignment: _lightIsOn
+                          ? Alignment.bottomRight
+                          : Alignment.topLeft,
+                      child: SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: Container(color: Colors.green))),
                 ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
                 Container(
-                  color: const Color.fromARGB(255, 238, 227, 177),
-                  padding: const EdgeInsets.all(8),
-                  margin: const EdgeInsets.all(4),
-                  child: Text(_lightIsOn ? '押せない OFF' : '押せない ON'),
+                  margin: const EdgeInsets.all(14),
+                  child: AnimatedSize(
+                      duration: const Duration(seconds: 1),
+                      alignment: _lightIsOn
+                          ? Alignment.topLeft
+                          : Alignment.bottomRight,
+                      child: SizedBox(
+                          width: _lightIsOn ? 84 : 16,
+                          height: _lightIsOn ? 84 : 16,
+                          child: Container(color: Colors.purple))),
                 ),
-              ],
-            ),
-            AnimatedSwitcher(
-                duration: const Duration(seconds: 1),
-                child: _lightIsOn
-                    ? Center(
-                        child: Container(
-                            padding: const EdgeInsets.all(10.0),
-                            child: const SizedBox(
-                                width: 15,
-                                height: 15,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 3.0,
-                                ))))
-                    : const Text("")),
-            Container(
-              padding: const EdgeInsets.all(8),
-              margin: const EdgeInsets.all(4),
-              child: AnimatedAlign(
-                  duration: const Duration(seconds: 1),
-                  alignment:
-                      _lightIsOn ? Alignment.bottomRight : Alignment.topLeft,
-                  child: SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: Container(color: Colors.green))),
-            ),
-            Container(
-              margin: const EdgeInsets.all(14),
-              child: AnimatedSize(
-                  duration: const Duration(seconds: 1),
-                  alignment:
-                      _lightIsOn ? Alignment.topLeft : Alignment.bottomRight,
-                  child: SizedBox(
-                      width: _lightIsOn ? 84 : 16,
-                      height: _lightIsOn ? 84 : 16,
-                      child: Container(color: Colors.purple))),
+              ]),
             ),
             GestureDetector(
               onTap: () {
