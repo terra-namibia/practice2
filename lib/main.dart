@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_string_interpolations
+// ignore_for_file: unnecessary_string_interpolations, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:practice2/TestPage2.dart';
