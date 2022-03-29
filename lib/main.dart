@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: <Widget>[
+          children: const <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
