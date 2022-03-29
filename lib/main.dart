@@ -110,44 +110,54 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Text("data1"),
-            const Text("data2"),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            if (_counter % 2 == 0)
-              const Text('偶数です',
-                  style: TextStyle(fontSize: 20, color: Colors.red)),
-            if (_counter % 2 == 1)
-              const Text('奇数です',
-                  style: TextStyle(fontSize: 20, color: Colors.red)),
-            Text('$_type',
-                style: const TextStyle(fontSize: 20, color: Colors.red)),
-            TextButton(
-              onPressed: () => {print("updateボタンがおされたよ")},
-              child: const Text("update"),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-                Icon(
-                  Icons.audiotrack,
-                  color: Colors.green,
-                  size: 30.0,
-                ),
-                Icon(
-                  Icons.beach_access,
-                  color: Colors.blue,
-                  size: 36.0,
-                ),
-                Icon(FontAwesomeIcons.globe, color: Colors.cyan)
-              ],
-            ),
+            Container(
+                padding: const EdgeInsets.all(8),
+                margin: const EdgeInsets.all(4),
+                child: Column(
+                  children: [
+                    const Text("data1"),
+                    const Text("data2"),
+                    Text(
+                      '$_counter',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    if (_counter % 2 == 0)
+                      const Text('偶数です',
+                          style: TextStyle(fontSize: 20, color: Colors.red)),
+                    if (_counter % 2 == 1)
+                      const Text('奇数です',
+                          style: TextStyle(fontSize: 20, color: Colors.red)),
+                    Text('$_type',
+                        style:
+                            const TextStyle(fontSize: 20, color: Colors.red)),
+                    TextButton(
+                      onPressed: () => {print("updateボタンがおされたよ")},
+                      child: const Text("update"),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        Icon(
+                          Icons.audiotrack,
+                          color: Colors.green,
+                          size: 30.0,
+                        ),
+                        Icon(
+                          Icons.beach_access,
+                          color: Colors.blue,
+                          size: 36.0,
+                        ),
+                        Icon(FontAwesomeIcons.globe, color: Colors.cyan)
+                      ],
+                    ),
+                  ],
+                )),
             Container(
               color: const Color.fromARGB(255, 240, 234, 209),
               padding: const EdgeInsets.all(8),
-              margin: const EdgeInsets.all(4),
+              margin: const EdgeInsets.symmetric(
+                vertical: 10.0,
+              ),
               child: Column(children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
