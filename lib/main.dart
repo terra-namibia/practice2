@@ -115,8 +115,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 margin: const EdgeInsets.all(4),
                 child: Column(
                   children: [
-                    const Text("data1"),
-                    const Text("data2"),
                     Text(
                       '$_counter',
                       style: Theme.of(context).textTheme.headline4,
@@ -130,12 +128,82 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text('$_type',
                         style:
                             const TextStyle(fontSize: 20, color: Colors.red)),
-                    TextButton(
-                      onPressed: () => {print("updateボタンがおされたよ")},
-                      child: const Text("update"),
+                    Container(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: const Text('TextButton'),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        const TextButton(
+                          onPressed: null,
+                          child: Text('disabled'),
+                        ),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text('enabled'),
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            primary: Colors.red,
+                          ),
+                          onPressed: () {},
+                          child: const Text('enabled'),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: const Text('OutlinedButton'),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        const OutlinedButton(
+                          onPressed: null,
+                          child: Text('disabled'),
+                        ),
+                        OutlinedButton(
+                          onPressed: () {},
+                          child: const Text('enabled'),
+                        ),
+                        OutlinedButton(
+                          onPressed: () {},
+                          style: OutlinedButton.styleFrom(
+                            primary: Colors.red,
+                          ),
+                          child: const Text('enabled'),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: const Text('ElevatedButton'),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        const ElevatedButton(
+                          onPressed: null,
+                          child: Text('disabled'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () => {print("ElevatedButtonがおされたよ")},
+                          child: const Text('enabled'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () => {print("ElevatedButtonがおされたよ")},
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red,
+                            elevation: 16,
+                          ),
+                          child: const Text('enabled'),
+                        ),
+                      ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: const [
                         Icon(
                           Icons.audiotrack,
@@ -169,6 +237,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     GestureDetector(
                       onTap: () {
@@ -193,6 +262,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Container(
                       color: const Color.fromARGB(255, 238, 227, 177),
@@ -204,6 +274,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     AnimatedSwitcher(
                         duration: const Duration(seconds: 1),
