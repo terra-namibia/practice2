@@ -42,6 +42,14 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _lightIsOn = false;
   static const String _url = 'https://flutter.dev';
 
+  final PageController _pageController = PageController();
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
     onPrimary: Colors.black87,
     primary: Colors.grey[300],
@@ -115,6 +123,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 margin: const EdgeInsets.all(4),
                 child: Column(
                   children: [
+                    ElevatedButton(
+                        onPressed: () => {
+                              Navigator.of(context)
+                                  .push(MaterialPageRoute(builder: (context) {
+                                return TestPage2();
+                              }))
+                            },
+                        child: const Text("Next page",
+                            style: TextStyle(fontSize: 16))),
                     Text(
                       '$_counter',
                       style: Theme.of(context).textTheme.headline4,
@@ -128,79 +145,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text('$_type',
                         style:
                             const TextStyle(fontSize: 20, color: Colors.red)),
-                    Container(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: const Text('TextButton'),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        const TextButton(
-                          onPressed: null,
-                          child: Text('disabled'),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text('enabled'),
-                        ),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            primary: Colors.red,
-                          ),
-                          onPressed: () {},
-                          child: const Text('enabled'),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: const Text('OutlinedButton'),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        const OutlinedButton(
-                          onPressed: null,
-                          child: Text('disabled'),
-                        ),
-                        OutlinedButton(
-                          onPressed: () {},
-                          child: const Text('enabled'),
-                        ),
-                        OutlinedButton(
-                          onPressed: () {},
-                          style: OutlinedButton.styleFrom(
-                            primary: Colors.red,
-                          ),
-                          child: const Text('enabled'),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: const Text('ElevatedButton'),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        const ElevatedButton(
-                          onPressed: null,
-                          child: Text('disabled'),
-                        ),
-                        ElevatedButton(
-                          onPressed: () => {print("ElevatedButtonがおされたよ")},
-                          child: const Text('enabled'),
-                        ),
-                        ElevatedButton(
-                          onPressed: () => {print("ElevatedButtonがおされたよ")},
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.red,
-                            elevation: 16,
-                          ),
-                          child: const Text('enabled'),
-                        ),
-                      ],
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -337,7 +281,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: SizedBox(
                           width: _lightIsOn ? 84 : 16,
                           height: _lightIsOn ? 84 : 16,
-                          child: Container(color: Colors.purple))),
+                          child: Container(
+                              color: Color.fromARGB(255, 213, 120, 230)))),
                 ),
               ]),
             ),
@@ -347,17 +292,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   selected = !selected;
                 });
               },
-              child: Center(
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 8),
+                alignment: Alignment.center,
                 child: Container(
-                  width: 150.0,
-                  height: 150.0,
+                  width: 200.0,
+                  height: 80.0,
                   color: const Color.fromARGB(255, 250, 121, 112),
                   child: AnimatedAlign(
                     alignment:
                         selected ? Alignment.topRight : Alignment.bottomLeft,
                     duration: const Duration(seconds: 1),
                     curve: Curves.fastOutSlowIn,
-                    child: const FlutterLogo(size: 30.0),
+                    child: const FlutterLogo(size: 20.0),
                   ),
                 ),
               ),
@@ -367,14 +314,54 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: _launchURL,
               child: const Text('Show Flutter homepage'),
             ),
-            TextButton(
-                onPressed: () => {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (context) {
-                        return TestPage2();
-                      }))
-                    },
-                child: const Text("進む", style: TextStyle(fontSize: 30))),
+
+            // 不完全燃焼
+            Container(
+              margin: const EdgeInsets.only(bottom: 20),
+              child: ConstrainedBox(
+                constraints:
+                    const BoxConstraints.expand(height: 80, width: 240),
+                child: PageView(
+                  controller: _pageController,
+                  children: <Widget>[
+                    Container(
+                      color: Colors.cyan,
+                      child: Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_pageController.hasClients) {
+                              _pageController.animateToPage(
+                                1,
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeInOut,
+                              );
+                            }
+                          },
+                          child: const Text('Next'),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      color: Colors.blue,
+                      child: Center(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_pageController.hasClients) {
+                              _pageController.animateToPage(
+                                0,
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeInOut,
+                              );
+                            }
+                          },
+                          child: const Text('Previous'),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
