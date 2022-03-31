@@ -403,10 +403,26 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () =>
-              {print("FloatingActionButtonが押されたよ"), _incrementCounter()},
-          child: const Icon(Icons.timer)),
+      floatingActionButton:
+          Column(mainAxisAlignment: MainAxisAlignment.end, children: [
+        Container(
+          margin: const EdgeInsets.only(bottom: 12),
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: FloatingActionButton(
+                onPressed: () =>
+                    {print("FloatingActionButtonが押されたよ"), _incrementCounter()},
+                child: const Icon(Icons.add)),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: FloatingActionButton(
+              onPressed: () =>
+                  {print("FloatingActionButtonが押されたよ"), _incrementCounter()},
+              child: const Icon(Icons.timer)),
+        ),
+      ]),
     );
   }
 }
