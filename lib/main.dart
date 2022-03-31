@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   runApp(const MyApp());
-  print("ボタンがおされたよ");
+  print("起動したよ");
 }
 
 class MyApp extends StatelessWidget {
@@ -75,6 +75,38 @@ class _MyHomePageState extends State<MyHomePage> {
     if (!await launch(_url)) throw 'Could not launch $_url';
   }
 
+  deleteCategory() {
+    print("deleted!");
+  }
+
+  _delete() async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+            AlertDialog(title: const Text("削除してよろしいでしょうか"), actions: <Widget>[
+              SimpleDialogOption(
+                child: const Text("YES"),
+                onPressed: () {
+                  Navigator.pop(context, "YES");
+                },
+              ),
+              SimpleDialogOption(
+                child: const Text("NO"),
+                onPressed: () {
+                  Navigator.pop(context, "NO");
+                },
+              ),
+            ])).then<void>((value) async {
+      switch (value) {
+        case "YES":
+          await deleteCategory(); // データの削除を行う処理
+          break;
+        case "NO":
+          break;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,6 +115,12 @@ class _MyHomePageState extends State<MyHomePage> {
           Icon(Icons.create),
           Text("初めてのタイトル"),
         ]),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(FontAwesomeIcons.trashCan),
+            onPressed: _delete,
+          )
+        ],
       ),
       drawer: Drawer(
         child: ListView(
