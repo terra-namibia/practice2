@@ -40,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _type = "偶数";
   bool selected = false;
   bool _lightIsOn = false;
+  String dropdownValue = 'One';
   static const String _url = 'https://flutter.dev';
 
   final PageController _pageController = PageController();
@@ -346,6 +347,28 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
+            ),
+            DropdownButton<String>(
+              value: dropdownValue,
+              icon: const Icon(Icons.arrow_downward),
+              elevation: 16,
+              style: const TextStyle(color: Colors.deepPurple),
+              underline: Container(
+                height: 2,
+                color: Colors.deepPurpleAccent,
+              ),
+              onChanged: (String? newValue) {
+                setState(() {
+                  dropdownValue = newValue!;
+                });
+              },
+              items: <String>['One', 'Two', 'Free', 'Four']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
             ),
             ElevatedButton(
               style: raisedButtonStyle,
