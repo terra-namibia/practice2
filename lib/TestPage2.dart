@@ -1,3 +1,4 @@
+// ignore_for_file: unnecessary_string_interpolations, avoid_print
 import 'package:flutter/material.dart';
 import 'package:practice2/TestPage3.dart';
 
@@ -6,7 +7,7 @@ class TestPage2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Test2"),
+          title: const Text("Test2"),
         ),
         body: Center(
             child:
@@ -21,14 +22,14 @@ class TestPage2 extends StatelessWidget {
                         return TestPage3();
                       }))
                     },
-                child: Text("進む", style: TextStyle(fontSize: 30))),
+                child: const Text("進む", style: TextStyle(fontSize: 30))),
           ),
           Container(
             margin: const EdgeInsets.only(bottom: 8),
             padding: const EdgeInsets.all(8),
             child: ElevatedButton(
                 onPressed: () => {Navigator.of(context).pop()},
-                child: Text("戻る", style: TextStyle(fontSize: 30))),
+                child: const Text("戻る", style: TextStyle(fontSize: 30))),
           ),
           Container(
             padding: const EdgeInsets.only(top: 8),
